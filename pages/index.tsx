@@ -18,7 +18,7 @@ const Home = ({ expenses }: { expenses: Expense[]; }) => {
 		<div className={styles.container}>
 			<div>
 				{expenses.map(({ id, name, description, amount, createdAt }) => (
-					<div>
+					<div key={id}>
 						<h1>{name}</h1>
 						<h2>{description}</h2>
 						<p>{amount}</p>
