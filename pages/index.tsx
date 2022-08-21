@@ -1,37 +1,23 @@
-import {Formik, Form, Field, FormikHelpers} from 'formik';
+import type { NextPage } from 'next';
+import styles from '../styles/Home.module.css';
+
 import { prisma } from '@services/prisma';
 import type { Expense } from '@prisma/client';
-import axios from 'axios';
 
 export async function getServerSideProps() {
-	try {
-		const expenses = await prisma.expense.findMany();
-		return {
-			props: {
-				expenses: JSON.parse(JSON.stringify(expenses))
-			}
-		};
-
-	} catch (err) {
-		return {
-			props: {
-				expenses: [],
-				err: "Error occurred while retrieving expenses"
-			}
+	const expenses = await prisma.expense.findMany();
+	return {
+		props: {
+			expenses: JSON.parse(JSON.stringify(expenses))
 		}
-	}
+	};
 }
 
-const Home = ({ expenses, err }: { expenses: Expense[]; err: string }) => {
-
-	const createNewExpense = async (data: Partial<Expense>) => {
-		await axios.post('https://express-finance.vercel.app//api/expense', data);
-	}
-
+const Home = ({ expenses }: { expenses: Expense[]; }) => {
 	return (
-		<div>
+		<div className={styles.container}>
 			<div>
-				{expenses && expenses.map(({ id, name, description, amount, createdAt }) => (
+				{expenses.map(({ id, name, description, amount, createdAt }) => (
 					<div key={id}>
 						<h1>{name}</h1>
 						<h2>{description}</h2>
@@ -39,34 +25,23 @@ const Home = ({ expenses, err }: { expenses: Expense[]; err: string }) => {
 						<p>{createdAt.toString()}</p>
 					</div>
 				))}
-				{err && err}
 			</div>
 			<div style={{ padding: '10px', backgroundColor: "#999" }}>
 				<h2>New Expense</h2>
-				<Formik<Partial<Expense>>
-					initialValues={{
-						name: "",
-						description: "",
-						amount: 0
-					}}
-					onSubmit={(values: Partial<Expense>, {setSubmitting}: FormikHelpers<Partial<Expense>>) => {
-						createNewExpense(values);
-						setSubmitting(false);
-					}}
-				>
-					<Form>
-						<label htmlFor='name'>Name</label>
-						<Field id="name" name="name" type="text" />
-						
-						<label htmlFor='description'>Description</label>
-						<Field id="description" name="description" type="text" />
-						
-						<label htmlFor='amount'>Amount</label>
-						<Field id="amount" name="amount" type="text" />
-
-						<button type="submit">Save</button>
-					</Form>
-				</Formik>
+				<form style={{ display: 'flex', flexDirection: "column" }}>
+					<label>
+						Expense Name
+						<input type="text" />
+					</label>
+					<label>
+						Expense Description
+						<input type="text" />
+					</label>
+					<label>
+						Expense Amount
+						<input type="text" />
+					</label>
+				</form>
 			</div>
 		</div>
 	);
