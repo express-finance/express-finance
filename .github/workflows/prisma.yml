@@ -1,0 +1,15 @@
+name: Deploy Changes to Prod DB
+on: [push]
+
+jobs:
+  Deploy-Changes-To-Supabase-Prod-DB:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Generate Latest Prisma Schema
+        run: yarn prisma:generate
+
+      - name: Run Production Migration
+        run: yarn prisma:deploy

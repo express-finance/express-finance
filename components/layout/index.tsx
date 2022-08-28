@@ -1,10 +1,10 @@
-import React, { Fragment } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import {
 	ChevronDownIcon,
 	HomeIcon,
+	LoginIcon,
 	LogoutIcon,
 	PlusIcon,
 	SparklesIcon,
@@ -27,6 +27,11 @@ export const Layout = ({ children }: { children: React.ReactNode; }) => {
 			label: "My Expenses",
 			icon: HomeIcon,
 			href: "/homes",
+		},
+		{
+			label: "Login",
+			icon: LoginIcon,
+			href: "/api/auth/login"
 		},
 		{
 			label: "Logout",

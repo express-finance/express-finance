@@ -3,5 +3,8 @@
         "formik",
         "headlessui",
         "heroicons"
-    ]
+		],
+		"yaml.schemas": {
+			"https://json.schemastore.org/github-workflow.json": "file:///Users/jack/code/express-finance/.github/workflows/prisma.yml"
+		}
 }
