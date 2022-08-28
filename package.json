@@ -8,9 +8,9 @@
 		"start": "next start",
 		"lint": "next lint",
 		"env": "doppler secrets download --format env --no-file --project express-finance --config dev > .env",
-		"prisma:dev": "prisma migrate dev",
-		"prisma:deploy": "prisma migrate deploy",
-		"prisma:generate": "prisma generate"
+		"prisma:dev": "yarn prisma migrate dev",
+		"prisma:deploy": "yarn prisma migrate deploy",
+		"prisma:generate": "yarn prisma generate"
 	},
 	"dependencies": {
 		"@auth0/nextjs-auth0": "^1.9.1",

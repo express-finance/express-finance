@@ -16,3 +16,5 @@ jobs:
 
       - name: Run Production Migration
         run: yarn prisma:deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
