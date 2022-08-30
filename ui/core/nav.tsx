@@ -6,11 +6,12 @@ import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid';
 
 import { loggedInNavButtons } from '@ui/layout/navButtons';
 import type { NavButton } from '@ui/layout/navButtons';
-import { ChevronDownIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
+import { DarkLogo } from '@ui/icons/DarkLogo';
+import Link from 'next/link';
 
 interface PrimaryNavProps {
-	user: UserProfile;
+	user: UserProfile | undefined;
 }
 
 export const PrimaryNav = ({ user }: PrimaryNavProps) => {
@@ -21,15 +22,18 @@ export const PrimaryNav = ({ user }: PrimaryNavProps) => {
 	};
 
 	return (
-		<Flex direction="row" p="2" shadow="base">
-			{/* <DarkLogo /> */}
-			<Box>
-				{loggedInNavButtons.map(({ name, pathname }: NavButton) => (
-					<NextLink href={pathname}>
-						<Button variant={"ghost"}>{name}</Button>
-					</NextLink>
-				))}
-			</Box>
+		<Flex direction="row" alignItems="center" p="2" shadow="base">
+			<DarkLogo />
+
+			{user && (
+				<Box>
+					{loggedInNavButtons.map(({ name, pathname }: NavButton) => (
+						<NextLink href={pathname}>
+							<Button variant={"ghost"}>{name}</Button>
+						</NextLink>
+					))}
+				</Box>
+			)}
 
 			<Spacer />
 
@@ -64,6 +68,18 @@ export const PrimaryNav = ({ user }: PrimaryNavProps) => {
 				</Menu>
 			)}
 
-		</Flex>
+			{!user && (
+				<Box>
+					<Link href='/api/auth/login'>
+						<Button variant="ghost">Sign Up</Button>
+					</Link>
+					<Link href='/api/auth/signup'>
+						<Button variant="solid">Login</Button>
+					</Link>
+				</Box>
+			)}
+
+
+		</Flex >
 	);
 };

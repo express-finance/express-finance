@@ -21,9 +21,7 @@ export const Layout = ({
 				<title>{title || "Express Finance"}</title>
 			</Head>
 
-			{user && (
-				<PrimaryNav user={user} />
-			)}
+			<PrimaryNav user={user} />
 
 			<Box>
 				{children}

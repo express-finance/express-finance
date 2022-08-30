@@ -3,35 +3,13 @@ import { getSession, useUser } from '@auth0/nextjs-auth0';
 import Link from 'next/link';
 import { Layout } from '@ui/layout';
 
-// export async function getServerSideProps(req: NextApiRequest, res: NextApiResponse) {
-// 	try {
-// 		const session = await getSession(req, res);
-// 		if (!session) {
-// 			return {
-// 				redirect: {
-// 					destination: '/logout',
-// 					permanent: false
-// 				}
-// 			};
-// 		}
-// 	} catch (err) {
-// 		return {
-// 			redirect: {
-// 				destination: '/logout',
-// 				permanent: false
-// 			}
-// 		};
-// 	}
-// }
-
 const Home = () => {
 
 	const { user, error, isLoading } = useUser();
 
 	if (isLoading) return <div>Loading...</div>;
 	if (error) return <div>{error.message}</div>;
-	if (!user) return <Link href="/api/auth/login"><a>Login</a></Link>;
-	return <Layout user={user} title="Homepage">Hello {user.name}, <Link href="/api/auth/logout"><a>Logout</a></Link></Layout>;
+	return <Layout user={user} title="Homepage">Hello {user?.name}</Layout>;
 };
 
 export default Home;
