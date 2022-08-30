@@ -69,11 +69,11 @@ export const PrimaryNav = ({ user }: PrimaryNavProps) => {
 			)}
 
 			{!user && (
-				<Box>
-					<Link href='/api/auth/login'>
+				<Box display="flex" gap="10px">
+					<Link href='/api/auth/signup'>
 						<Button variant="ghost">Sign Up</Button>
 					</Link>
-					<Link href='/api/auth/signup'>
+					<Link href='/api/auth/login'>
 						<Button variant="solid">Login</Button>
 					</Link>
 				</Box>
