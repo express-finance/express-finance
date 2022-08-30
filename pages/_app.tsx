@@ -1,13 +1,31 @@
-import '../styles/globals.css';
+import { UserContext, UserProfile, UserProvider } from '@auth0/nextjs-auth0';
+import { ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
-import { UserProvider } from '@auth0/nextjs-auth0';
+import { theme } from '@ui/theme/chakra';
 
-function MyApp({ Component, pageProps }: AppProps) {
+interface UserContextProps {
+	user?: UserProfile;
+	error?: Error;
+	isLoading?: boolean;
+}
+
+function ExpressFinanceApp({ Component, pageProps }: AppProps) {
 	return (
 		<UserProvider>
-			<Component {...pageProps} />
+			<UserProvider user={pageProps.user}>
+				<UserContext.Consumer>
+					{({ user, error, isLoading }: UserContextProps) => {
+						return (
+							<ChakraProvider theme={theme}>
+								<Component {...pageProps} user={user} />
+							</ChakraProvider>
+						);
+					}
+					}
+				</UserContext.Consumer>
+			</UserProvider>
 		</UserProvider>
 	);
 }
 
-export default MyApp;
+export default ExpressFinanceApp;
