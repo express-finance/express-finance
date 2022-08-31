@@ -3,6 +3,10 @@ import { ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
 import { theme } from '@ui/theme/chakra';
 
+export interface NextPageProps {
+	user?: UserProfile;
+	children?: React.ReactNode;
+}
 interface UserContextProps {
 	user?: UserProfile;
 	error?: Error;

@@ -1,6 +1,9 @@
 import React from 'react';
 import { UserProfile } from '@auth0/nextjs-auth0';
-import { Flex, Heading, Link, Spinner } from '@chakra-ui/react';
+import { Flex } from '@ui/core/layout';
+import { Heading } from '@ui/core/typography';
+import { Link } from '@ui/core/navigation';
+import { Spinner } from '@ui/core/feedback';
 import { Layout } from '@ui/layout';
 import { useRouter } from 'next/router';
 

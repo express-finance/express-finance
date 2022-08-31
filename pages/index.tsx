@@ -1,18 +1,11 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession, useUser } from '@auth0/nextjs-auth0';
-import Link from 'next/link';
 import { Layout } from '@ui/layout';
+import { NextPageProps } from './_app';
 
-const Home = () => {
+interface DashboardProps extends NextPageProps { };
 
-	const { user, error, isLoading } = useUser();
-
-	if (isLoading) return <div>Loading...</div>;
-	if (error) return <div>{error.message}</div>;
+export default function Dashboard({ user }: DashboardProps) {
 	return <Layout user={user} title="Homepage">Hello {user?.name}</Layout>;
 };
-
-export default Home;
 
 
 {/* <Formik<Partial<Expense>>
