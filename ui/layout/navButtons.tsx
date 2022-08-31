@@ -5,8 +5,8 @@ export interface NavButton {
 
 export const loggedInNavButtons: NavButton[] = [
 	{
-		name: "Home",
-		pathname: "/dashboard",
+		name: "Dashboard",
+		pathname: "/",
 	},
 	{
 		name: "Expenses",

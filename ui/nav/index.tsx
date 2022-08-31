@@ -1,6 +1,9 @@
 import React from 'react';
 import NextLink from 'next/link';
-import { Image, Box, Flex, Spacer, Button, MenuButton, Menu, MenuList, MenuItem, MenuDivider, Icon } from '@chakra-ui/react';
+import { Box, Flex, Spacer } from '@ui/core/layout';
+import { Button } from '@ui/core/inputs';
+import { Image, Icon } from '@ui/core/media';
+import { Menu, MenuItem, MenuList, MenuButton, MenuDivider } from '@ui/core/overlay';
 import { UserProfile } from '@auth0/nextjs-auth0';
 import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid';
 
