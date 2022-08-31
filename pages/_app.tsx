@@ -1,3 +1,4 @@
+import React from 'react';
 import { UserContext, UserProfile, UserProvider } from '@auth0/nextjs-auth0';
 import { ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
@@ -18,7 +19,7 @@ function ExpressFinanceApp({ Component, pageProps }: AppProps) {
 		<UserProvider>
 			<UserProvider user={pageProps.user}>
 				<UserContext.Consumer>
-					{({ user, error, isLoading }: UserContextProps) => {
+					{({ user }: UserContextProps) => {
 						return (
 							<ChakraProvider theme={theme}>
 								<Component {...pageProps} user={user} />
